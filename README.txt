@@ -1,28 +1,94 @@
-REMIX DEFAULT WORKSPACE
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+# **Election Contract - Remix Workspace**
 
-This workspace contains 3 directories:
+This project contains a Solidity smart contract for managing an election system, along with deployment scripts and test cases for interacting with the contract. The project is structured for use with the Remix IDE, and it includes all the necessary files for compiling, deploying, and testing the Election contract.
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+## **Workspace Structure**
 
-SCRIPTS
+The workspace is organized as follows:
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+### **1. `contracts/` Directory**
+This folder contains your Solidity contract files.
 
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+- **`Election.sol`**: The main smart contract for managing elections. It includes features like adding candidates, authorizing voters, casting votes, and ending the election.
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+### **2. `scripts/` Directory**
+This folder contains TypeScript scripts for deploying the smart contract using popular libraries.
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+- **`deploy_with_ethers.ts`**: A deployment script that uses the `ethers.js` library to deploy the Election contract.
+- **`deploy_with_web3.ts`**: A deployment script that uses the `web3.js` library to deploy the Election contract.
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+Both scripts are set up to deploy the `Election` contract. You can modify the contract's name and provide the appropriate constructor arguments to deploy other contracts.
+
+### **3. `tests/` Directory**
+This folder contains test scripts for verifying the functionality of the Election contract.
+
+- **`Election.test.js`**: JavaScript test file that uses Mocha and Chai for testing the Election contract functions.
+
+### **4. `remix-config.js`**
+This configuration file holds the settings and configurations for the Remix IDE.
+
+## **Getting Started**
+
+### **Step 1: Compile the Contract**
+
+Before deploying or testing the contract, ensure that the contract is compiled.
+
+1. Open Remix IDE (https://remix.ethereum.org).
+2. In the **File Explorer**, navigate to the `contracts/` directory.
+3. Open `Election.sol` and click on the **Solidity compiler** tab on the left panel.
+4. Click **Compile Election.sol** to compile the contract.
+
+### **Step 2: Deploy the Contract**
+
+Once the contract is compiled, you can deploy it using the provided scripts. There are two options for deploying the contract: using `ethers.js` or `web3.js`.
+
+#### **Deploy with ethers.js**
+
+1. Open `deploy_with_ethers.ts` from the **scripts/** directory.
+2. Ensure that the contract name (`Election`) and any constructor arguments are correct.
+3. Right-click the file and select **Run** in the Remix IDE. The output will appear in the Remix terminal.
+
+#### **Deploy with web3.js**
+
+1. Open `deploy_with_web3.ts` from the **scripts/** directory.
+2. Ensure that the contract name (`Election`) and any constructor arguments are correct.
+3. Right-click the file and select **Run** in the Remix IDE. The output will appear in the Remix terminal.
+
+### **Step 3: Run Tests**
+
+To verify the functionality of your Election contract, you can run the tests:
+
+1. Open the **tests/** directory.
+2. Open `Election.test.js` (or your preferred test file).
+3. Right-click the file and select **Run** in the Remix IDE to execute the test cases.
+
+### **Step 4: Interact with the Contract**
+
+Once deployed, you can interact with the contract through Remix's **Deploy & Run Transactions** tab. Use the generated contract's interface to call functions like `addCandidate`, `authorizeVoter`, `vote`, and `endElection`.
+
+## **Supported Libraries & Modules**
+
+Remix IDE supports the following modules for deployment and testing:
+
+- **ethers.js**
+- **web3.js**
+- **chai**
+- **multihashes**
+- **remix**
+- **hardhat.ethers** (for Hardhat projects)
+
+Please note that **require/import** is supported for the listed modules, and any unsupported modules will throw an error.
+
+## **Troubleshooting**
+
+If you encounter an error like:  
+`'<module_name> module require is not supported by Remix IDE'`,  
+this indicates that the module you're trying to use is not supported in the Remix IDE environment. Stick to the supported modules listed above.
+
+## **Further Modifications**
+
+- You can modify the `Election.sol` contract to add additional features such as restricting vote casting by time, adding more roles (e.g., admins or election observers), or integrating with other decentralized systems.
+- Update the **deployment scripts** (`deploy_with_ethers.ts` and `deploy_with_web3.ts`) to deploy any other contract, simply by changing the contract's name and constructor arguments.
+
+---
